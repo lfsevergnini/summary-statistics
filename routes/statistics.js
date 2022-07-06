@@ -17,4 +17,29 @@ router.get('/', (req, res) => {
   res.send(summary);
 });
 
+router.get('/departments', (req, res) => {
+  const employees = employeeRepository.fetchAll();
+
+  const departments = {};
+
+  employees.forEach((e) => {
+    if (!departments[e.department]) {
+      departments[e.department] = [];
+    }
+
+    departments[e.department].push(e);
+  });
+
+  const summary = Object.entries(departments).map((department) => {
+    const salaries = department[1].map((emp) => emp.salary);
+
+    return {
+      department: department[0],
+      summary: summaryStatistics.getSummaryStatistics(salaries),
+    };
+  });
+
+  res.send(summary);
+});
+
 module.exports = router;
