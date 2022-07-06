@@ -1,15 +1,15 @@
 const fs = require('fs');
 
-const employees = JSON.parse(fs.readFileSync('repositories/employees.json'));
+let employees = JSON.parse(fs.readFileSync('repositories/employees.json'));
 
 const EmployeeRepository = {
-    fetchAll: () => employees,
+  fetchAll: () => employees,
 
-    insert: (employee) => employees.push(employee),
+  insert: (employee) => employees.push(employee),
 
-    delete: (id) => {
-        employees = employees.filter(e => e.id !== id);
-    },
-}
+  delete: (id) => {
+    employees = employees.filter((e) => e.id !== id);
+  },
+};
 
 module.exports = EmployeeRepository;

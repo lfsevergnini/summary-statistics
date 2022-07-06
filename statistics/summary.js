@@ -5,12 +5,12 @@ const SummaryStatistics = {
    * @returns Object
    */
   getSummaryStatistics: (numbers) => {
-    let min = Number.POSITIVE_INFINITY,
-      max = Number.NEGATIVE_INFINITY,
-      sum = 0,
-      mean = 0;
+    let min = Number.POSITIVE_INFINITY;
+    let max = Number.NEGATIVE_INFINITY;
+    let sum = 0;
+    let mean = 0;
 
-    numbers.forEach(n => {
+    numbers.forEach((n) => {
       sum += n;
 
       if (n < min) min = n;
@@ -25,6 +25,6 @@ const SummaryStatistics = {
       mean,
     };
   },
-}
+};
 
 module.exports = SummaryStatistics;
