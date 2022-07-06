@@ -6,11 +6,9 @@ const employeeRepository = require('../repositories/employees');
 const summaryStatistics = require('../statistics/summary');
 
 router.get('/', (req, res) => {
-  let employees = employeeRepository.fetchAll();
+  const filter = req.query.on_contract ? (e) => e.on_contract : null;
 
-  if (req.query.on_contract) {
-    employees = employees.filter((e) => e.on_contract);
-  }
+  const employees = employeeRepository.fetchAll(filter);
 
   const salaries = employees.map((emp) => emp.salary);
 
