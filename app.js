@@ -1,27 +1,7 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const swaggerUi = require('swagger-ui-express');
-const swaggerFile = require('./swagger-output.json');
-
 require('dotenv').config();
 
-const app = express();
-const port = 3000;
+const server = require('./server');
 
-app.use(bodyParser.json());
+const PORT = process.env.PORT || 3000;
 
-const auth = require('./routes/auth');
-const employees = require('./routes/employees');
-const statistics = require('./routes/statistics');
-
-const authMiddleware = require('./middleware/auth');
-
-app.use('/auth', auth);
-app.use('/employees', authMiddleware, employees);
-app.use('/statistics', authMiddleware, statistics);
-
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
-});
+server.listen(PORT, () => console.log(`Server is live at localhost:${PORT}`));
