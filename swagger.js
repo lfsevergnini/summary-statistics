@@ -55,6 +55,10 @@ const doc = {
     AddEmployee: {
       $name: 'Anurag',
       $salary: 90000,
+      $currency: 'USD',
+      $department: 'Banking',
+      $sub_department: 'Loan',
+      on_contract: true,
     },
   },
 };

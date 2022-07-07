@@ -19,13 +19,16 @@ const EmployeeRepository = {
       return 1;
     }
 
-    return employees[employees.length - 1].id;
+    return employees[employees.length - 1].id + 1;
   },
 
   insert: (employee) => {
-    const id = this.getNextId();
+    const id = EmployeeRepository.getNextId();
+    const newEmployee = { id, ...employee };
 
-    employees.push({ id, ...employee });
+    employees.push(newEmployee);
+
+    return newEmployee;
   },
 
   delete: (id) => {

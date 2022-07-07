@@ -20,6 +20,43 @@
     }
   ],
   "paths": {
+    "/employees/": {
+      "post": {
+        "tags": [
+          "Employees"
+        ],
+        "summary": "Insert a new employee in the company",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Company summary statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SummaryStatistics"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddEmployee"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/AddEmployee"
+              }
+            }
+          }
+        }
+      }
+    },
     "/statistics/": {
       "get": {
         "tags": [
@@ -129,6 +166,9 @@
             "type": "boolean",
             "example": true
           }
+        },
+        "xml": {
+          "name": "Employee"
         }
       },
       "SummaryStatistics": {
@@ -146,6 +186,9 @@
             "type": "number",
             "example": 70000
           }
+        },
+        "xml": {
+          "name": "SummaryStatistics"
         }
       },
       "DepartmentSS": {
@@ -156,8 +199,14 @@
             "example": "Engineering"
           },
           "summary": {
+            "xml": {
+              "name": "summarystatistics"
+            },
             "$ref": "#/components/schemas/SummaryStatistics"
           }
+        },
+        "xml": {
+          "name": "DepartmentSS"
         }
       },
       "SubDepartmentSS": {
@@ -168,8 +217,14 @@
             "example": "Engineering-Platform"
           },
           "summary": {
+            "xml": {
+              "name": "summarystatistics"
+            },
             "$ref": "#/components/schemas/SummaryStatistics"
           }
+        },
+        "xml": {
+          "name": "SubDepartmentSS"
         }
       },
       "AddEmployee": {
@@ -182,12 +237,34 @@
           "salary": {
             "type": "number",
             "example": 90000
+          },
+          "currency": {
+            "type": "string",
+            "example": "USD"
+          },
+          "department": {
+            "type": "string",
+            "example": "Banking"
+          },
+          "sub_department": {
+            "type": "string",
+            "example": "Loan"
+          },
+          "on_contract": {
+            "type": "boolean",
+            "example": true
           }
         },
         "required": [
           "name",
-          "salary"
-        ]
+          "salary",
+          "currency",
+          "department",
+          "sub_department"
+        ],
+        "xml": {
+          "name": "AddEmployee"
+        }
       }
     },
     "securitySchemes": {
