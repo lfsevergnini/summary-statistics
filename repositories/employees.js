@@ -14,7 +14,19 @@ const EmployeeRepository = {
     return employees.filter(filter);
   },
 
-  insert: (employee) => employees.push(employee),
+  getNextId: () => {
+    if (employees.length === 0) {
+      return 1;
+    }
+
+    return employees[employees.length - 1].id;
+  },
+
+  insert: (employee) => {
+    const id = this.getNextId();
+
+    employees.push({ id, ...employee });
+  },
 
   delete: (id) => {
     employees = employees.filter((e) => e.id !== id);
