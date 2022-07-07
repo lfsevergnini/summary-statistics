@@ -15,7 +15,26 @@ const getGroupStatistics = (department) => {
 };
 
 router.get('/', (req, res) => {
-  const filter = req.query.on_contract ? (e) => e.on_contract : null;
+  /*
+    #swagger.tags = ['Statistics']
+    #swagger.summary = 'Get Summary Statistics (SS) for all employees.'
+    #swagger.parameters['on_contract'] = {
+      in: 'query',
+      description: 'Gets only employeees on contract (0 or 1)',
+      type: 'int'
+    }
+    #swagger.responses[200] = {
+        description: "Company summary statistics",
+        content: {
+            "application/json": {
+                schema:{
+                  $ref: "#/definitions/SummaryStatistics"
+                }
+            }
+        }
+    }
+  */
+  const filter = parseInt(req.query.on_contract, 2) ? (e) => e.on_contract : null;
 
   const employees = employeeRepository.fetchAll(filter);
 
@@ -27,6 +46,20 @@ router.get('/', (req, res) => {
 });
 
 router.get('/departments', (req, res) => {
+  /*
+    #swagger.tags = ['Statistics']
+    #swagger.summary = 'Get summary statistics for all departments.'
+    #swagger.responses[200] = {
+        description: "Departments summary statistics",
+        content: {
+            "application/json": {
+                schema:{
+                    $ref: "#/definitions/DepartmentSS"
+                }
+            }
+        }
+    }
+  */
   const employees = employeeRepository.fetchAll();
 
   const departments = {};
@@ -45,6 +78,20 @@ router.get('/departments', (req, res) => {
 });
 
 router.get('/sub-departments', (req, res) => {
+  /*
+    #swagger.tags = ['Statistics']
+    #swagger.summary = 'Get summary statistics for all sub-departments.'
+    #swagger.responses[200] = {
+        description: "Sub-departments summary statistics",
+        content: {
+            "application/json": {
+                schema:{
+                    $ref: "#/definitions/SubDepartmentSS"
+                }
+            }
+        }
+    }
+  */
   const employees = employeeRepository.fetchAll();
 
   const departments = {};
