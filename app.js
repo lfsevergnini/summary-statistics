@@ -3,14 +3,18 @@ const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger-output.json');
 
+require('dotenv').config();
+
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
 
+const auth = require('./routes/auth');
 const employees = require('./routes/employees');
 const statistics = require('./routes/statistics');
 
+app.use('/auth', auth);
 app.use('/employees', employees);
 app.use('/statistics', statistics);
 

@@ -69,6 +69,13 @@ const doc = {
         },
       ],
     },
+    UserLogin: {
+      username: 'foo',
+      password: 'bar',
+    },
+    UserJWT: {
+      token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE2NTcyMjA4OTd9.cc6Kk2YovvO9d_dfuZaVrxpQpeB2Ls5-ObeNMAF083Q',
+    },
   },
 };
 

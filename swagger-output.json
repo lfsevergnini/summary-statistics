@@ -20,6 +20,46 @@
     }
   ],
   "paths": {
+    "/auth/token": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Generate a token for a user.",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "JWT token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserJWT"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLogin"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLogin"
+              }
+            }
+          }
+        }
+      }
+    },
     "/employees/": {
       "post": {
         "tags": [
@@ -329,6 +369,34 @@
         },
         "xml": {
           "name": "EmployeeError"
+        }
+      },
+      "UserLogin": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "foo"
+          },
+          "password": {
+            "type": "string",
+            "example": "bar"
+          }
+        },
+        "xml": {
+          "name": "UserLogin"
+        }
+      },
+      "UserJWT": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmb28iOiJiYXIiLCJpYXQiOjE2NTcyMjA4OTd9.cc6Kk2YovvO9d_dfuZaVrxpQpeB2Ls5-ObeNMAF083Q"
+          }
+        },
+        "xml": {
+          "name": "UserJWT"
         }
       }
     },
