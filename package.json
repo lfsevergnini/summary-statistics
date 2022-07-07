@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon -L --inspect=0.0.0.0 app.js",
-    "test": "jest",
+    "test": "jest --testTimeout=10000",
     "docs": "node swagger.js",
     "lint": "eslint --fix ."
   },
@@ -31,9 +31,13 @@
     "supertest": "^6.2.4"
   },
   "jest": {
+    "collectCoverage": true,
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
       "/node_modules/"
+    ],
+    "setupFilesAfterEnv": [
+        "<rootDir>/tests/setupTests.js"
     ]
   }
 }

@@ -21,7 +21,7 @@ router.post(
         required: true,
         schema: { $ref: "#/definitions/AddEmployee" }
       }
-      #swagger.responses[200] = {
+      #swagger.responses[201] = {
           description: "Newly created employee",
           content: {
               "application/json": {
@@ -53,7 +53,7 @@ router.post(
     const payload = req.body;
     const newEmployee = employeeRepository.insert(payload);
 
-    return res.send(newEmployee);
+    return res.status(201).send(newEmployee);
   },
 );
 
