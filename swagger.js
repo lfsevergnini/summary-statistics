@@ -60,6 +60,15 @@ const doc = {
       $sub_department: 'Loan',
       on_contract: true,
     },
+    EmployeeError: {
+      errors: [
+        {
+          msg: 'Invalid value',
+          param: 'name',
+          location: 'body',
+        },
+      ],
+    },
   },
 };
 

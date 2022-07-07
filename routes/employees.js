@@ -1,32 +1,57 @@
 const express = require('express');
+const { body, validationResult } = require('express-validator');
 
 const router = express.Router();
 
 const employeeRepository = require('../repositories/employees');
 
-router.post('/', (req, res) => {
-  /*
-    #swagger.tags = ['Employees']
-    #swagger.summary = 'Insert a new employee in the company'
-    #swagger.requestBody = {
-      required: true,
-      schema: { $ref: "#/definitions/AddEmployee" }
+router.post(
+  '/',
+  body('name').exists().isString().isLength({ min: 3 }),
+  body('salary').exists().isNumeric(),
+  body('currency').exists().isString().isLength({ min: 3 }),
+  body('department').exists().isString(),
+  body('sub_department').exists().isString(),
+  body('on_contract').optional().isBoolean({ strict: false }),
+  (req, res) => {
+    /*
+      #swagger.tags = ['Employees']
+      #swagger.summary = 'Insert a new employee in the company'
+      #swagger.requestBody = {
+        required: true,
+        schema: { $ref: "#/definitions/AddEmployee" }
+      }
+      #swagger.responses[200] = {
+          description: "Newly created employee",
+          content: {
+              "application/json": {
+                  schema:{
+                    $ref: "#/definitions/Employee"
+                  }
+              }
+          }
+      }
+      #swagger.responses[400] = {
+          description: "Validation errors",
+          content: {
+              "application/json": {
+                  schema:{
+                    $ref: "#/definitions/EmployeeError"
+                  }
+              }
+          }
+      }
+    */
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
-    #swagger.responses[200] = {
-        description: "Company summary statistics",
-        content: {
-            "application/json": {
-                schema:{
-                  $ref: "#/definitions/Employee"
-                }
-            }
-        }
-    }
-  */
-  const payload = req.body;
-  const newEmployee = employeeRepository.insert(payload);
 
-  res.send(newEmployee);
-});
+    const payload = req.body;
+    const newEmployee = employeeRepository.insert(payload);
+
+    return res.send(newEmployee);
+  },
+);
 
 module.exports = router;

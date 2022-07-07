@@ -30,11 +30,21 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Company summary statistics",
+            "description": "Newly created employee",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SummaryStatistics"
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation errors",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeError"
                 }
               }
             }
@@ -264,6 +274,34 @@
         ],
         "xml": {
           "name": "AddEmployee"
+        }
+      },
+      "EmployeeError": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "msg": {
+                  "type": "string",
+                  "example": "Invalid value"
+                },
+                "param": {
+                  "type": "string",
+                  "example": "name"
+                },
+                "location": {
+                  "type": "string",
+                  "example": "body"
+                }
+              }
+            }
+          }
+        },
+        "xml": {
+          "name": "EmployeeError"
         }
       }
     },
