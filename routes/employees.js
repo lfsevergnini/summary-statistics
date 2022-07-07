@@ -41,6 +41,9 @@ router.post(
               }
           }
       }
+      #swagger.security = [{
+        "bearerAuth": []
+      }]
     */
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

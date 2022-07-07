@@ -14,9 +14,11 @@ const auth = require('./routes/auth');
 const employees = require('./routes/employees');
 const statistics = require('./routes/statistics');
 
+const authMiddleware = require('./middleware/auth');
+
 app.use('/auth', auth);
-app.use('/employees', employees);
-app.use('/statistics', statistics);
+app.use('/employees', authMiddleware, employees);
+app.use('/statistics', authMiddleware, statistics);
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 

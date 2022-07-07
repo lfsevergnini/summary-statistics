@@ -1,4 +1,7 @@
-const swaggerAutogen = require('swagger-autogen')({ openapi: '3.0.0' });
+const swaggerAutogen = require('swagger-autogen')({
+  autoHeaders: false,
+  openapi: '3.0.0',
+});
 
 const doc = {
   info: {
@@ -18,11 +21,10 @@ const doc = {
     },
   ],
   securityDefinitions: {
-    apiKeyAuth: {
-      type: 'apiKey',
-      in: 'header', // can be "header", "query" or "cookie"
-      name: 'X-API-KEY', // name of the header, query parameter or cookie
-      description: 'Bearer token',
+    bearerAuth: {
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
     },
   },
   definitions: {
