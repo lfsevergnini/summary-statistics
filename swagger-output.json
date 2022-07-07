@@ -67,6 +67,33 @@
         }
       }
     },
+    "/employees/{id}": {
+      "delete": {
+        "tags": [
+          "Employees"
+        ],
+        "summary": "Remove one employee from the company",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/statistics/": {
       "get": {
         "tags": [

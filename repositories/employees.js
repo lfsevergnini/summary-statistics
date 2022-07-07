@@ -32,7 +32,14 @@ const EmployeeRepository = {
   },
 
   delete: (id) => {
-    employees = employees.filter((e) => e.id !== id);
+    const employee = employees.find((e) => e.id === id);
+
+    if (employee) {
+      employees = employees.filter((e) => e.id !== id);
+      return true;
+    }
+
+    return false;
   },
 };
 

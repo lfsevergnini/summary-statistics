@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
         }
     }
   */
-  const filter = parseInt(req.query.on_contract, 2) ? (e) => e.on_contract : null;
+  const filter = parseInt(req.query.on_contract) ? (e) => e.on_contract : null;
 
   const employees = employeeRepository.fetchAll(filter);
 

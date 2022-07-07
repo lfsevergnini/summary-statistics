@@ -54,4 +54,21 @@ router.post(
   },
 );
 
+router.delete(
+  '/:id',
+  (req, res) => {
+    /*
+      #swagger.tags = ['Employees']
+      #swagger.summary = 'Remove one employee from the company'
+    */
+    const id = parseInt(req.params.id);
+
+    if (employeeRepository.delete(id)) {
+      return res.status(204).send();
+    }
+
+    return res.status(404).send();
+  },
+);
+
 module.exports = router;
