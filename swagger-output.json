@@ -69,7 +69,7 @@
         "description": "",
         "parameters": [],
         "responses": {
-          "200": {
+          "201": {
             "description": "Newly created employee",
             "content": {
               "application/json": {
@@ -142,7 +142,12 @@
           "404": {
             "description": "Not Found"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/statistics/": {
@@ -176,7 +181,12 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/statistics/departments": {
@@ -201,7 +211,12 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/statistics/sub-departments": {
@@ -226,7 +241,12 @@
           "401": {
             "description": "Unauthorized"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     }
   },

@@ -38,7 +38,7 @@
       "/node_modules/"
     ],
     "setupFilesAfterEnv": [
-        "<rootDir>/tests/setupTests.js"
+      "<rootDir>/tests/setupTests.js"
     ]
   }
 }

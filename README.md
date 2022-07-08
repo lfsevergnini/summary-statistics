@@ -38,6 +38,7 @@ npm run start
 To run the application tests, run:
 
 ```bash
+npm install
 npm run test
 ```
 
