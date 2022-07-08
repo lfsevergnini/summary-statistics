@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon -L --inspect=0.0.0.0 app.js",
+    "start": "node_modules/.bin/nodemon -L --inspect=0.0.0.0 app.js",
     "test": "jest --testTimeout=10000",
     "docs": "node swagger.js",
     "lint": "eslint --fix ."
