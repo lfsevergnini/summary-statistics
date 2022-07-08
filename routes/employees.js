@@ -63,6 +63,9 @@ router.delete(
     /*
       #swagger.tags = ['Employees']
       #swagger.summary = 'Remove one employee from the company'
+      #swagger.security = [{
+        "bearerAuth": []
+      }]
     */
     const id = parseInt(req.params.id);
 

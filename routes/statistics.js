@@ -33,6 +33,9 @@ router.get('/', (req, res) => {
             }
         }
     }
+    #swagger.security = [{
+        "bearerAuth": []
+    }]
   */
   const filter = parseInt(req.query.on_contract) ? (e) => e.on_contract : null;
 
@@ -59,6 +62,9 @@ router.get('/departments', (req, res) => {
             }
         }
     }
+    #swagger.security = [{
+        "bearerAuth": []
+    }]
   */
   const employees = employeeRepository.fetchAll();
 
@@ -91,6 +97,9 @@ router.get('/sub-departments', (req, res) => {
             }
         }
     }
+    #swagger.security = [{
+        "bearerAuth": []
+    }]
   */
   const employees = employeeRepository.fetchAll();
 
